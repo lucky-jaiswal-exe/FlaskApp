@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body>
+    <!-- ---------------------------------------------------------------- header ------------------------------------------------------------------------- -->
+    <header>
+        <div class="mx-auto max-w-screen-xl px-4 py-4 sm:px-6 sm:py-4 lg:px-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a class="block text-teal-600" href="/">
+                    <img class="w-10" src="{{ url_for('static', filename='./images/logo.png') }}" alt="">
+                </a>
+                <div class="text-center sm:text-left">
+                    <h1 class="text-2xl font-bold text-slate-500 sm:text-3xl">
+                        Welcome Back, Lucky!
+                    </h1>
+
+                    <p class="mt-1.5 text-sm text-slate-500">
+                        Let's Play some Music
+                    </p>
+                </div>
+
+                <div class="mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center">
+                    <label for="AcceptConditions" class="relative h-8 w-14 cursor-pointer">
+                        <input type="checkbox" id="AcceptConditions" class="peer sr-only" />
+
+                        <span
+                            class="absolute inset-0 rounded-full bg-gray-700 transition peer-checked:bg-gray-700"></span>
+
+                        <span
+                            class="absolute inset-0 start-0 m-1 h-6 w-6 rounded-full bg-gray-700 ring-[6px] ring-inset ring-white transition-all peer-checked:start-8 peer-checked:w-2 peer-checked:bg-gray peer-checked:ring-white">
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ---------------------------------------------------------------- header ------------------------------------------------------------------------- -->
+
+    <!-- ---------------------------------------------------------------- alert box ---------------------------------------------------------------------- -->
+    <div role="alert" id="alertBox" class="hidden rounded border-s-4 border-red-500 bg-red-50 p-4">
+        
+    </div>
+    <div role="alert" id="successBox" class="hidden rounded border-s-4 border-green-500 bg-green-50 p-4">
+        
+    </div>
+    <!-- ---------------------------------------------------------------- alert box ---------------------------------------------------------------------- -->
+
+    <!-- ----------------------------------------------------------------- main section ------------------------------------------------------------------ -->
+
+    <div id="main" class="grid grid-cols-4 border">
+
+        <!-- ------------------------------------------------------------ side menu ----------------------------------------------------------------------- -->
+        <div class="flex h-screen flex-col max-w-[300px]  border-e bg-white">        
+            <div id="songs" class="px-4 py-6">
+  
+
+            </div>
+        </div>
+        <!-- ------------------------------------------------------------ side menu ----------------------------------------------------------------------- -->
+
+        <!-- ------------------------------------------------------------  main screeen ------------------------------------------------------------------ -->
+        <form
+            class="bg-[#caf3fc] relative top-[15%] left-[12%] border-2 border-[#caf3fc] rounded-lg max-w-screen-md w-[90%] h-[500px] shadow-lg col-start-2 col-end-5 px-12 py-6"
+            action="" method="">
+
+            <!-- Input for format -->
+            <div class="flex w-full h-20 justify-around items-center">
+                <h3 class="text-xl text-gray-700 font-bold">Choose Format : </h3>
+                <fieldset id="radioBtns" class="flex flex-wrap gap-3 w-[30rem] justify-center">
+
+                    <div>
+                        <input type="radio" name="FormatOption" value="VIDEO" id="ColorBlack" class="peer hidden"
+                            checked />
+
+                        <label for="ColorBlack"
+                            class="flex cursor-pointer items-center justify-center rounded-md border border-gray-100 bg-white px-3 py-2 text-gray-900 hover:border-gray-200 peer-checked:border-gray-700 peer-checked:bg-gray-700 peer-checked:text-white">
+                            <p class="text-sm font-medium">VIDEO</p>
+                        </label>
+                    </div>
+
+                    <div>
+                        <input type="radio" name="FormatOption" value="AUDIO" id="ColorRed" class="peer hidden" />
+
+                        <label for="ColorRed"
+                            class="flex cursor-pointer items-center justify-center rounded-md border border-gray-100 bg-white px-3 py-2 text-gray-900 hover:border-gray-200 peer-checked:border-gray-900 peer-checked:bg-gray-900 peer-checked:text-white">
+                            <p class="text-sm font-medium">AUDIO</p>
+                        </label>
+                    </div>
+
+                </fieldset>
+            </div>
+            <!-- Input for format -->
+
+            <!-- input for Link -->
+            <div class="flex justify-around items-center w-full h-20">
+                <h3 class="text-xl text-gray-700 font-bold">Paste Your Link Here : </h3>
+                <label for="linkInp"
+                    class="relative w-[25rem] h-[2.5rem] block rounded-md border border-gray-700 shadow-sm focus-within:border-gray-900 focus-within:ring-1 focus-within:ring-gray-900">
+                    <input type="text" id="linkInp" name="linkInp"
+                        class="w-full h-[inherit] px-5 peer border-none bg-transparent focus:border-transparent focus:outline-none focus:ring-0"
+                        placeholder="Paste Your Link" />
+                </label>
+            </div>
+            <!-- Input for link -->
+
+            <!-- Submit -->
+            <button type="button" id="dwnBtn"
+                class="inline-block rounded bg-gray-900 px-8 py-3 text-sm mt-6 ml-2 font-medium text-white transition hover:scale-105 hover:shadow-xl focus:outline-none focus:ring active:bg-gray-900"
+                onclick="download()">
+                Download
+            </button>
+            <!-- Submit -->
+
+            <!-- quaities -->
+            <div id="qualities" class="grid grid-cols-3 gap-8 mt-6 px-3">
+            </div>
+            <!-- quaities -->
+
+            <!-- download btn -->
+            <button type="button" id="dwnBtn2"
+                class="hidden rounded bg-gray-900 px-8 py-3 text-sm mt-6 ml-2 font-medium text-white transition hover:scale-105 hover:shadow-xl focus:outline-none focus:ring active:bg-gray-900"
+                onclick="download2()">
+                Download
+            </button>
+            <!-- download btn -->
+
+
+        </form>
+        <!-- ------------------------------------------------------------  main screen ------------------------------------------------------------------ -->
+
+    </div>
+    <!-- ----------------------------------------------------------------- main section ------------------------------------------------------------------ -->
+
+    <script src="{{ url_for('static', filename='./js/jquery.min.js') }}"></script>    
+    <script src="{{ url_for('static', filename='./js/index.js') }}"></script>
+
+
+
+
+</body>
+
+</html>
