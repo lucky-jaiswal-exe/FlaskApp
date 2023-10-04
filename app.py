@@ -78,14 +78,3 @@ def finalDownload():
 
 if __name__ == "__main__":
   app.run(debug=True, host="0.0.0.0")
-
-# # import OS module
-
-# # Get the list of all files and directories
-# path = "C://Users//Vanshi//Desktop//gfg"
-# dir_list = os.listdir(path)
-
-# print("Files and directories in '", path, "' :")
-
-# # prints all files
-# print(dir_list)
